@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="{{ url_for('static', filename='/css/styles.css') }}" rel="stylesheet" />
+</head>
+<body>
+    <h1>Welcome to the D&D Spellbook</h1>
+    <p>Total Spells: {{ spells_data['count'] }}</p>
+
+    <p><a href="{{ url_for('list_spells') }}">List all spells</a></p>
+    <form method="POST">
+        <label>Search for a spell</label>
+        <input type="text" id="search_spell" name="search_spell">
+        <br/><br/>
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>

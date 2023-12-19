@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Spell List: </h1>
+    <ol>
+        {% for spell in spells %}
+        <li><a href="{{ url_for('search_spells', user_spell=spell['name']) }}">{{ spell['name'] }}</a></li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

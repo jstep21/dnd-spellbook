@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ spell_data['name'] }}</title>
+</head>
+<body>
+    <h1>{{ spell_data['name'] }}</h1>
+    <p><strong>Description:</strong> {% for desc in spell_data['desc']: %}
+                       <p>{{ desc | trim("'][") }}</p>
+                    {% endfor %}
+    </p>
+    <p><strong>Spell Range:</strong> {{ spell_data['range'] }}</p>
+    <p><strong>Duration: </strong> {{ spell_data['duration'] }}</p>
+    {% if spell_data['concentration']: %}
+        <p><strong>Concentration Spell: </strong>Yes</p>
+    {% else: %}
+        <p><strong>Concentration Spell: </strong>No</p>
+    {% endif %}
+    <p><strong>Classes that learn this spell:</strong> {{ classes | trim("''][") }}</p>
+
+    {% if spell_data['damage']: %}
+        <p>Damage Type: {{ spell_data['damage']['damage_type']['name'] }}</p>
+        <ul>
+            {% for key, value in spell_data['damage']['damage_at_slot_level'].items(): %}
+                <li>Level {{ key }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+</body>
+</html>
