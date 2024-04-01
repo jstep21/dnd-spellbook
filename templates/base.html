@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+<html lang="en">
+    {% block head %}
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <title>{% block title %}{% endblock %}</title>
+        {% block styles %}
+                {{ bootstrap.load_css() }}
+        {% endblock %}
+            <!-- Latest compiled and minified CSS -->
+
+    </head>
+    {% endblock %}
+
+    <body>
+        {% block navbar %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <nav class="navbar custom-navbar">
+                        <div class="col navbar-buttons">
+                            <button class="btn custom-button"><b>Contact</b></button>
+                            <a href="{{ url_for('about_page') }}"><button class="btn custom-button"><b>About</b></button></a>
+                            <a href="{{ url_for('list_spells') }}"><button class="btn custom-button" ><b>List all spells</b></button></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+    </body>
