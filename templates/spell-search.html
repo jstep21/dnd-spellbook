@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ spell_data['name'] }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head %}
+{% block title %}Spell Search{% endblock %}
+{% endblock %}
+{% block navbar %}{% endblock %}
+{% block content %}
     <h1>{{ spell_data['name'] }}</h1>
     <p><strong>Description:</strong> {% for desc in spell_data['desc']: %}
                        <p>{{ desc | trim("'][") }}</p>
@@ -17,7 +16,7 @@
     {% else: %}
         <p><strong>Concentration Spell: </strong>No</p>
     {% endif %}
-    <p><strong>Classes that learn this spell:</strong> {{ classes | trim("''][") }}</p>
+    <p><strong>Classes that learn this spell:</strong> {{ classes | trim("'][") }}</p>
 
     {% if spell_data['damage']: %}
         <p>Damage Type: {{ spell_data['damage']['damage_type']['name'] }}</p>
@@ -27,7 +26,7 @@
             {% endfor %}
         </ul>
     {% endif %}
-
-
+{% endblock %}
+{% block scripts %}{% endblock %}
 </body>
 </html>
