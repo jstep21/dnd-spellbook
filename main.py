@@ -11,8 +11,8 @@ url = "https://dnd5eapi.co/api/spells"
 headers = {'Accept': 'application/json'}
 response = requests.get(url=url, headers=headers)
 if response.status_code == 200:
-    spells_data = response.json()
-    spells = spells_data['results']
+    all_spells_data = response.json()
+    spells = all_spells_data['results']
 
 
 # home route
@@ -22,7 +22,7 @@ def home_page():
     if not render home page"""
     if request.method == "GET":
         return render_template(template_name_or_list="index.html",
-                               spells_data=spells_data,
+                               spells_data=all_spells_data,
                                spells=spells,
                                request=request,
                                )
