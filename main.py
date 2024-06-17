@@ -4,7 +4,7 @@ from flask_bootstrap import Bootstrap
 
 # init flask and bootstrap
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
+Bootstrap(app)
 
 # make api request
 url = "https://dnd5eapi.co/api/spells"
@@ -17,7 +17,7 @@ if response.status_code == 200:
 
 # home route
 @app.route('/', methods=["GET", "POST"])
-def main():
+def home_page():
     """check if a user makes a search request, if so redirect to search page.
     if not render home page"""
     if request.method == "GET":
@@ -25,20 +25,18 @@ def main():
                                spells_data=spells_data,
                                spells=spells,
                                request=request,
-                               bootstrap=bootstrap
                                )
     else:
         spell = request.form['search_spell']
         return redirect(url_for('search_spells',
                                 user_spell=spell,
-                                bootstrap=bootstrap))
+                                ))
 
 
 @app.route('/about')
 def about_page():
     "render about page"
-    return render_template(template_name_or_list='about.html',
-                           )
+    return render_template(template_name_or_list='about.html')
 
 
 # route to list all spells
@@ -47,7 +45,7 @@ def list_spells():
     """render webpage for a list of all spells in spellbook"""
     return render_template(template_name_or_list='spell-list.html',
                            spells=spells,
-                           bootstrap=bootstrap)
+                           )
 
 
 # route for spell search
@@ -66,7 +64,6 @@ def search_spells(user_spell):
         return render_template(template_name_or_list='spell-search.html',
                                spell_data=spell_data,
                                classes=classes,
-                               bootstrap=bootstrap
                                )
 
 
