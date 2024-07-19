@@ -1,4 +1,9 @@
 @charset "UTF-8";
+
+.navbar-expand-lg {
+    background-color: #264c5e;
+}
+
 /*!
 * Start Bootstrap - Clean Blog v6.0.9 (https://startbootstrap.com/theme/clean-blog)
 * Copyright 2013-2023 Start Bootstrap
