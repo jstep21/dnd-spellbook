@@ -5,22 +5,26 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
-{% for spell in spells %}
+{% for spell in class_spells %}
   <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+<!--    <img src="..." class="card-img-top" alt="...">-->
     <div class="card-body">
-      <h5 class="card-title">{{ spell['index'] }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <h5 class="card-title">
+          <a href="{{ url_for('search_spells', user_spell=spell['name']) }}">
+              {{ spell['name'] }}
+          </a>
+      </h5>
+      <p class="card-text">Level Learned: {{ spell['level'] }}</p>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+<!--    <ul class="list-group list-group-flush">-->
+<!--      <li class="list-group-item">Cras justo odio</li>-->
+<!--      <li class="list-group-item">Dapibus ac facilisis in</li>-->
+<!--      <li class="list-group-item">Vestibulum at eros</li>-->
+<!--    </ul>-->
+<!--    <div class="card-body">-->
+<!--      <a href="#" class="card-link">Card link</a>-->
+<!--      <a href="#" class="card-link">Another link</a>-->
+<!--    </div>-->
   </div>
 {% endfor %}
 {% endblock %}

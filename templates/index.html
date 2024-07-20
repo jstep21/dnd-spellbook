@@ -46,7 +46,10 @@
                         {% for class in classes %}
                             <div class="col-6 col-12-medium">
                                 <section>
-                                    <h3 class="fab fa-d-and-d">{{ class[0].upper() }}</h3>
+                                    <h3
+                                            class="fab fa-d-and-d"><a
+                                            href="{{ url_for('class_info', class_name=class[0]) }}">{{
+                                        class[0].upper() }}</a></h3>
                                     <p>{{ class[1] }}</p>
                                 </section>
                             </div>

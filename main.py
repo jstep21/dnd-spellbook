@@ -68,8 +68,8 @@ def list_spells():
 
 
 # route for ranger spells
-@app.route('/<class_name>-spells')
-def class_spells(class_name):
+@app.route('/<class_name>', methods=['GET'])
+def class_info(class_name):
     """render webpage for a list of all spells for specific class in spellbook"""
     class_data = []
     total_spells = 0
@@ -77,6 +77,9 @@ def class_spells(class_name):
     if class_response.status_code == 200:
         total_spells = class_response.json()['count']
         class_data = class_response.json()['results']
+        if total_spells == 0:
+            return render_template('class-spells.html',
+                                   class_name=class_name)
 
     return render_template(template_name_or_list='class-spells.html',
                            class_spells=class_data,
