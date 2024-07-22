@@ -19,7 +19,7 @@ class and are able to click the class name to see every spell a druid can learn.
     <li><a href="https://www.jetbrains.com/pycharm/">Pycharm</a>, <a href="https://code.visualstudio.com/">VSCode</a>
 (add the Python extension) or any other IDE for writing code in Python</li>
     <li>This project uses the <a href="https://flask.palletsprojects.com/en/3.0.x/">Flask</a> framework and the 
-        <a href="https://5e-bits.github.io/docs/">DnD 5e API</a>
+        <a href="https://5e-bits.github.io/docs/">DnD 5e API</a> (No API key needed)
     </li>
 </ul>
 
