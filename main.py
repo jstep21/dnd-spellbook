@@ -38,7 +38,6 @@ def home_page():
     if not render home page"""
 
     if request.method == "GET":
-
         return render_template(template_name_or_list="index.html",
                                spells_data=all_spells_data,
                                spells=spells,
@@ -70,19 +69,20 @@ def list_spells():
 # route for ranger spells
 @app.route('/<class_name>', methods=['GET'])
 def class_info(class_name):
-    """render webpage for a list of all spells for specific class in spellbook"""
-    class_data = []
+    """render webpage for class data"""
+    class_spells = []
     total_spells = 0
     class_response = requests.get(url=f"{url}classes/{class_name}/spells", headers=headers)
+
     if class_response.status_code == 200:
         total_spells = class_response.json()['count']
-        class_data = class_response.json()['results']
+        class_spells = class_response.json()['results']
         if total_spells == 0:
             return render_template('class-spells.html',
                                    class_name=class_name)
 
     return render_template(template_name_or_list='class-spells.html',
-                           class_spells=class_data,
+                           class_spells=class_spells,
                            class_total_spells=total_spells
                            )
 

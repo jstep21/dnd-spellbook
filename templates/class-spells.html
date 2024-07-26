@@ -5,16 +5,20 @@
 {% block navbar %}{% endblock %}
 
 {% block content %}
-{% for spell in class_spells %}
-  <div class="card" style="width: 18rem;">
-<!--    <img src="..." class="card-img-top" alt="...">-->
-    <div class="card-body">
-      <h5 class="card-title">
-          <a href="{{ url_for('search_spells', user_spell=spell['name']) }}">
-              {{ spell['name'] }}
-          </a>
-      </h5>
-      <p class="card-text">Level Learned: {{ spell['level'] }}</p>
+
+<div class="container">
+    <div class="row">
+    {% for spell in class_spells %}
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ spell['name'] }}</h5>
+            <p class="card-text">Level Learned: {{ spell['level'] }}</p>
+            <a href="{{ url_for('search_spells', user_spell=spell['name']) }}" class="btn btn-primary">More Info</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
     </div>
 <!--    <ul class="list-group list-group-flush">-->
 <!--      <li class="list-group-item">Cras justo odio</li>-->
@@ -25,6 +29,6 @@
 <!--      <a href="#" class="card-link">Card link</a>-->
 <!--      <a href="#" class="card-link">Another link</a>-->
 <!--    </div>-->
-  </div>
-{% endfor %}
+<!--  </div>-->
+</div>
 {% endblock %}

@@ -30,37 +30,37 @@
         <div class="title">By Class</div>
         <div class="container">
 
-            <!-- Image -->
+        <!-- Image -->
 <!--                <a href="#" class="image featured">-->
 <!--                    <img src="images/pic01.jpg" alt="" />-->
 <!--                </a>-->
 
-            <!-- Features -->
-                <section id="features">
-                    <header class="style1">
-                        <h2>List of classes</h2>
-                        <p>Find spell information for any class!</p>
-                    </header>
-                    <div class="feature-list">
-                        <div class="row">
-                        {% for class in classes %}
-                            <div class="col-6 col-12-medium">
-                                <section>
-                                    <h3
-                                            class="fab fa-d-and-d"><a
-                                            href="{{ url_for('class_info', class_name=class[0]) }}">{{
-                                        class[0].upper() }}</a></h3>
-                                    <p>{{ class[1] }}</p>
-                                </section>
-                            </div>
-                        {% endfor %}
+        <!-- Features -->
+            <section id="features">
+                <header class="style1">
+                    <h2>List of classes</h2>
+                    <p>Find spell information for any class!</p>
+                </header>
+                <div class="feature-list" >
+                    <div class="row">
+                    {% for class in classes %}
+                        <div class="col-6 col-12-medium">
+                            <section>
+                                <h3
+                                        class="fab fa-d-and-d"><a
+                                        href="{{ url_for('class_info', class_name=class[0]) }}">{{
+                                    class[0].upper() }}</a></h3>
+                                <p>{{ class[1] }}</p>
+                            </section>
                         </div>
+                    {% endfor %}
                     </div>
-                    <ul class="actions special">
-                        <li><a href="#" class="button style1 large">Get Started</a></li>
-                        <li><a href="#" class="button style2 large">More Info</a></li>
-                    </ul>
-                </section>
+                </div>
+                <ul class="actions special">
+                    <li><a href="#" class="button style1 large">Get Started</a></li>
+                    <li><a href="#" class="button style2 large">More Info</a></li>
+                </ul>
+            </section>
 
         </div>
     </section>
