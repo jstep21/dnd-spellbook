@@ -6,29 +6,75 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-    {% for spell in class_spells %}
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ spell['name'] }}</h5>
-            <p class="card-text">Level Learned: {{ spell['level'] }}</p>
-            <a href="{{ url_for('search_spells', user_spell=spell['name']) }}" class="btn btn-primary">More Info</a>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-    </div>
-<!--    <ul class="list-group list-group-flush">-->
-<!--      <li class="list-group-item">Cras justo odio</li>-->
-<!--      <li class="list-group-item">Dapibus ac facilisis in</li>-->
-<!--      <li class="list-group-item">Vestibulum at eros</li>-->
-<!--    </ul>-->
-<!--    <div class="card-body">-->
-<!--      <a href="#" class="card-link">Card link</a>-->
-<!--      <a href="#" class="card-link">Another link</a>-->
+<h1>{{ class_name.title() }}</h1>
+<table class="">
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Ability Score Bonus</th>
+      <th>Proficiency Bonus</th>
+      <th>Features</th>
+      {% if not class_resources[0]['spellcasting'] or not class_resources[0]['spellcasting']['cantrips_known']%}
+      {% else %}
+        <th>Cantrips Known</th>
+      {% endif %}
+      {% if not class_resources[0]['spellcasting'] or not class_resources[0]['spellcasting']['spells_known']%}
+      {% else %}
+        <th>Spells Known</th>
+      {% endif %}
+    </tr>
+  </thead>
+{% for level in class_resources %}
+  <tbody>
+    <tr>
+      <td>{{ level.level }}</td>
+      <td>{{ level.ability_score_bonuses }}</td>
+      <td>{{ level.prof_bonus }}</td>
+      <td>
+        <p>
+          {% for feature in level.features %}
+            <span>{{ feature.name }}</span>
+          {% endfor %}
+        </p>
+      </td>
+      {% if not level.spellcasting %}
+        {% else %}
+          {% if not level.spellcasting.cantrips_known %}
+          {% else %}
+            <td>{{ level.spellcasting.cantrips_known }}</td>
+          {% endif %}
+          {% if level.spellcasting.spells_known %}
+          {% else %}
+            <td>{{ level.spellcasting.spells_known }}</td>
+        {% endif %}
+      {% endif %}
+
+    </tr>
+  </tbody>
+{% endfor %}
+</table>
+<!--<div class="spell-container">-->
+<!--    <div class="row">-->
+<!--    {% for spell in class_spells %}-->
+<!--      <div class="col-sm-3">-->
+<!--        <div class="card">-->
+<!--          <div class="card-body">-->
+<!--            <h5 class="card-title">{{ spell['name'] }}</h5>-->
+<!--            <p class="card-text">Level Learned: {{ spell['level'] }}</p>-->
+<!--            <a href="{{ url_for('search_spells', user_spell=spell['name']) }}" class="btn btn-primary">More Info</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    {% endfor %}-->
 <!--    </div>-->
-<!--  </div>-->
-</div>
+<!--    <ul class="list-group list-group-flush">-->
+<!--    {% for spell in class_spells %}-->
+<!--      <li class="list-group-item">-->
+<!--          <a href="{{ url_for('search_spells', user_spell=spell['name']) }}">-->
+<!--              {{ spell.name }}-->
+<!--          </a>-->
+<!--      </li>-->
+<!--    {% endfor %}-->
+<!--    </ul>-->
+<!--</div>-->
 {% endblock %}

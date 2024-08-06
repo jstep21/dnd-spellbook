@@ -2,7 +2,7 @@ import requests
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap
 
-# init flask and bootstrap
+# init flask app and bootstrap
 app = Flask(__name__)
 Bootstrap(app)
 
@@ -53,7 +53,7 @@ def home_page():
 
 @app.route('/about')
 def about_page():
-    "render about page"
+    """Renders the about page"""
     return render_template(template_name_or_list='about.html')
 
 
@@ -72,18 +72,22 @@ def class_info(class_name):
     """render webpage for class data"""
     class_spells = []
     total_spells = 0
-    class_response = requests.get(url=f"{url}classes/{class_name}/spells", headers=headers)
+    class_resources = []
+    class_response = requests.get(url=f"{url}classes/{class_name}/levels", headers=headers)
 
     if class_response.status_code == 200:
-        total_spells = class_response.json()['count']
-        class_spells = class_response.json()['results']
-        if total_spells == 0:
-            return render_template('class-spells.html',
-                                   class_name=class_name)
+        class_resources = class_response.json()
+
+    # if class_response.status_code == 200:
+    #     total_spells = class_response.json()['count']
+    #     class_spells = class_response.json()['results']
+    #     if total_spells == 0:
+    #         return render_template('class-spells.html',
+    #                                class_name=class_name)
 
     return render_template(template_name_or_list='class-spells.html',
-                           class_spells=class_spells,
-                           class_total_spells=total_spells
+                           class_name=class_name,
+                           class_resources=class_resources,
                            )
 
 
