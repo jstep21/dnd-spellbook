@@ -6,7 +6,7 @@
 {% block content %}
     <h1>{{ spell_data['name'] }}</h1>
     <p><strong>Description:</strong> {% for desc in spell_data['desc']: %}
-                       <p>{{ desc | trim("'][") }}</p>
+                       <p>{{ desc  }}</p>
                     {% endfor %}
     </p>
     <p><strong>Spell Range:</strong> {{ spell_data['range'] }}</p>
